@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'r4'
+Starter.start(ARGV)
