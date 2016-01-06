@@ -26,6 +26,7 @@ Or install it yourself as:
 
 Gem expects config file in home directory named .r4.yml, which should contain following:
 
+```
 mysql:
   user: 'mysql_user_name'
   password: 'mysql_password'
@@ -43,6 +44,7 @@ server:
   name: 'server_name_for_deploy_script'
   port: 'ssh_port_number'
   user: 'server_user_for_deploy'
+```
 
 ## Development
 
