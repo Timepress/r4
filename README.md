@@ -1,12 +1,14 @@
 # R4
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/r4`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem is used for generating default project for Timepress company. However we hope it can be useful for other users as well.
 
 ## Installation
 
 Add this line to your application's Gemfile:
+
+It is still not in Rubygems repository. Thus this wont work for a while.
+
+You can clone project and use bundler to install gem locally with "rake install".
 
 ```ruby
 gem 'r4'
@@ -22,7 +24,25 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Gem expects config file in home directory named .r4.yml, which should contain following:
+
+mysql:
+  user: 'mysql_user_name'
+  password: 'mysql_password'
+
+admin:
+  login: 'default_admin_login'
+  password: 'default_admin_password'
+  email: 'default@admin.email'
+  lastname: 'AdminLastName'
+
+notifier:
+  email: 'email@for_exception.notifier'
+
+server:
+  name: 'server_name_for_deploy_script'
+  port: 'ssh_port_number'
+  user: 'server_user_for_deploy'
 
 ## Development
 
