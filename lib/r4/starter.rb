@@ -12,7 +12,7 @@ class Starter < Thor
       @dir = `pwd`.gsub("\n", '')
     elsif ARGV[0] =~ /add/
       if yes? 'Are you in right folder of your app?'
-        @project_path = `pwd`
+        @project_path = `pwd`.gsub("\n", '')
         @project_name = @project_path.split('/').last
         @project_label = @project_name.capitalize.gsub('_', ' ')
       else
@@ -53,11 +53,7 @@ class Starter < Thor
 
   desc 'add_wicked_pdf', 'add pdf generation to project'
   def add_wicked_pdf
-    add_gem 'wicked_pdf'
-    add_gem 'wkhtmltopdf-binary'
-    run 'bundle install'
-    run 'rails generate wicked_pdf'
-    # TODO fix initializer
+    apply 'recipes/wicked_pdf.rb'
   end
 
   # TODO any reason not to use bootstrap?
