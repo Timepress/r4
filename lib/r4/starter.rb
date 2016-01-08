@@ -71,8 +71,7 @@ class Starter < Thor
 
   desc 'add_charts_support', 'add gems for charts creating'
   def add_lazy_charts
-    say 'Not ready yet!', :red
-    #gem 'lazy_high_charts'
+    apply 'recipes/lazy_high_charts.rb'
   end
 
   desc 'add_datatables', 'add gems for datatables'
