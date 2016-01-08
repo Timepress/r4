@@ -35,9 +35,8 @@ class Starter < Thor
 
     # DEFAULT SETTINGS
     copy '.ruby-version'
-    # TODO use Gemfile created by RAILS, same for gitignore
-    remove "Gemfile"
-    copy 'Gemfile'
+    apply 'recipes/gemfile.rb'
+
     copy 'config/initializers/html_helpers.rb'
     copy 'config/locales/cs.yml'
     copy 'app/assets/stylesheets/theme.css'
@@ -47,8 +46,6 @@ class Starter < Thor
     remove 'app/views/layouts/application.html.erb'
     copy 'app/views/layouts/application.html.erb'
 
-    remove '.gitignore'
-    copy '.gitignore'
     apply 'recipes/bootstrap_app.rb'
     apply 'recipes/upload_app.rb'
     gsub_file "#{@project_path}/lib/tasks/upload.rake", /PROJECT_DIR/, @project_name
@@ -77,26 +74,8 @@ class Starter < Thor
       gsub_file layout_file, 'PROJECT_NAME', @project_name
 
     else
-      if yes? 'Do you want to prepare database config for mysql?'
-        apply 'recipes/mysql.rb'
-      end
-
-      if yes? 'Do you want to add rspec generators to application.rb?'
-        apply 'recipes/rspec_generators.rb'
-      end
-
-      if yes? 'Do you want to add exception notification?'
-        apply 'recipes/exception_notification.rb'
-      end
-
-      if yes? 'do you want to drop and create a database?'
-        rake 'db:drop'
-        rake 'db:create'
-      end
-
-      if yes? 'Do you want to add devise to project?'
-        apply 'recipes/devise.rb'
-      end
+      # not tested properly
+      apply 'recipes/install_questions.rb'
     end
 
     run 'git init'
