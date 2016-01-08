@@ -57,18 +57,6 @@ class Starter < Thor
     apply 'recipes/xlsx_support.rb'
   end
 
-  desc 'add_mail_support', 'add gems for working with mail'
-  def add_mail_gem
-    say 'Not ready yet!', :red
-    #gem 'mail'
-  end
-
-  desc 'add_in_place_editing_support', 'add gems for in place editing'
-  def add_best_in_place
-    say 'Not ready yet!', :red
-    #gem 'best_in_place'
-  end
-
   desc 'add_charts_support', 'add gems for charts creating'
   def add_lazy_charts
     apply 'recipes/lazy_high_charts.rb'
@@ -80,20 +68,27 @@ class Starter < Thor
     #gem 'jquery-datatables-rails', '~> 2.2.3'
   end
 
+  desc 'add_exception_notification', 'add exception notification to project'
+  def add_exception_notification
+    apply 'recipes/exception_notification.rb'
+  end
+
   desc 'add_skylight', 'add gems for skylight reporting'
   def add_skylight
     say 'Not ready yet!', :red
     #gem 'skylight'
   end
 
-  desc 'add_devise', 'add devise authentication to project'
-  def add_devise
-    apply 'recipes/devise.rb'
+  desc 'add_in_place_editing_support', 'add gems for in place editing'
+  def add_best_in_place
+    say 'Not ready yet!', :red
+    #gem 'best_in_place'
   end
 
-  desc 'add_exception_notification', 'add exception notification to project'
-  def add_exception_notification
-    apply 'recipes/exception_notification.rb'
+  desc 'add_mail_support', 'add gems for working with mail'
+  def add_mail_gem
+    say 'Not ready yet!', :red
+    #gem 'mail'
   end
 
   # local helpers
