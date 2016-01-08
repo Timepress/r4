@@ -47,26 +47,14 @@ class Starter < Thor
     end
   end
 
-
-  # functions to add funcionality to existing project
-  # TODO not tested at all!!!
-
   desc 'add_wicked_pdf', 'add pdf generation to project'
   def add_wicked_pdf
     apply 'recipes/wicked_pdf.rb'
   end
 
-  # TODO any reason not to use bootstrap?
-  desc 'add_bootstrap', 'add bootstrap to project'
-  def add_bootstrap
-    apply 'recipe/bootstrap.rb'
-  end
-
   desc 'add_xlsx_support', 'add gems for working with excel files'
   def add_xlsx_support
-    say 'Not ready yet!', :red
-    #gem 'roo'
-    #gem 'axlsx', '~> 2.0.1' # problems with newest version of RubyZip
+    apply 'recipes/xlsx_support.rb'
   end
 
   desc 'add_mail_support', 'add gems for working with mail'
