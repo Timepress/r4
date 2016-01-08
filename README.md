@@ -46,6 +46,9 @@ server:
   user: 'server_user_for_deploy'
 ```
 
+Then you can create new application with r4 new name_of_app
+Custom installations types can be specified in 'installations' directory.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.

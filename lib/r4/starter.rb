@@ -22,8 +22,14 @@ class Starter < Thor
     end
   end
 
-  desc 'new PROJECT_NAME', 'install rails application with asking you about stuff'
-  method_options alias: :string, ask: :string
+  long_desc <<-LONGDESC
+    Available types of installations are:
+    #{Dir.entries("#{File.dirname(File.expand_path(__FILE__))}/installations/")
+          .reject {|f| File.directory? f}
+          .join(', ')}
+  LONGDESC
+  desc 'new PROJECT_NAME --type', 'install rails application, you can specify type on installation with type argument'
+  method_options type: :string
   def new project_name
     @project_name = project_name
     run "rails new #{@project_name} -T --skip-bundle"
@@ -33,60 +39,12 @@ class Starter < Thor
 
     Dir.chdir @project_path
 
-    # DEFAULT SETTINGS
-    copy '.ruby-version'
-    apply 'recipes/gemfile.rb'
-
-    copy 'config/initializers/html_helpers.rb'
-    copy 'config/locales/cs.yml'
-    copy 'app/assets/stylesheets/theme.css'
-    copy 'app/assets/stylesheets/custom.css.scss'
-    copy 'app/assets/stylesheets/timepress.css.scss'
-
-    remove 'app/views/layouts/application.html.erb'
-    copy 'app/views/layouts/application.html.erb'
-
-    apply 'recipes/bootstrap_app.rb'
-    apply 'recipes/upload_app.rb'
-    gsub_file "#{@project_path}/lib/tasks/upload.rake", /PROJECT_DIR/, @project_name
-
-    insert_into_file "#{@project_path}/config/application.rb",
-                     after: "class Application < Rails::Application\n" do <<-RUBY
-      config.assets.enabled = true
-      config.assets.precompile += %w()
-      config.i18n.default_locale = :cs
-      config.time_zone = 'Prague'
-    RUBY
-    end
-
-    unless options[:ask]
-      apply 'recipes/mysql.rb'
-      apply 'recipes/rspec_generators.rb'
-      apply 'recipes/exception_notification.rb'
-      rake 'db:drop'
-      rake 'db:create'
-
-      apply 'recipes/devise.rb'
-      apply 'recipes/bootstrap.rb'
-      layout_file = "#{@project_path}/app/views/layouts/application.html.erb"
-      remove 'app/views/layouts/application.html.erb'
-      copy 'app/views/layouts/application.html.erb'
-      gsub_file layout_file, 'PROJECT_NAME', @project_name
-
+    # TODO read some config folder in home directory for user customized installations types
+    unless options[:type]
+      apply 'installations/default.rb'
     else
-      # not tested properly
-      apply 'recipes/install_questions.rb'
+      apply "installations/#{options[:type]}"
     end
-
-    run 'git init'
-    run 'git add .'
-    run "git commit -a -m 'Initial commit'"
-
-    rake 'app:bootstrap'
-
-    # for testing project starter
-    run "rails g scaffold Article name:string body:text"
-    rake "db:migrate"
   end
 
 
