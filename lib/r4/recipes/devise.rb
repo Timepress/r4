@@ -59,7 +59,8 @@ unless File.open(user_migrate_filename).read=~/string :login/
   end
 end
 
-directory 'app/views/users', "#{@project_path}/"
+Dir.mkdir "#{@project_path}/app/views/users"
+directory 'app/views/users', "#{@project_path}/app/views/users"
 
 gsub_file "#{@project_path}/config/routes.rb", 'devise_for :users' do
 <<EOF
