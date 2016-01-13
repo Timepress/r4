@@ -59,6 +59,7 @@ unless File.open(user_migrate_filename).read=~/string :login/
   end
 end
 
+copy 'app/controllers/users_controller.rb'
 Dir.mkdir "#{@project_path}/app/views/users"
 directory 'app/views/users', "#{@project_path}/app/views/users"
 
