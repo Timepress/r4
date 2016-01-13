@@ -66,7 +66,9 @@ directory 'app/views/users', "#{@project_path}/app/views/users"
 gsub_file "#{@project_path}/config/routes.rb", 'devise_for :users' do
 <<EOF
   devise_for :users
-  resources :users
+  scope "/admin" do
+    resources :users
+  end
 
   get 'edit_password/:id' => 'users#edit_password'
   resource :user, only: [:edit] do
@@ -77,6 +79,10 @@ gsub_file "#{@project_path}/config/routes.rb", 'devise_for :users' do
 
   get 'edit_own_password' => 'users#edit_own_password'
 EOF
+end
+
+gsub_file "#{@project_path}/config/routes.rb", "# root 'welcome#index'" do
+  "root 'users#index'"
 end
 
 

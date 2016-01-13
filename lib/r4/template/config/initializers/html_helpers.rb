@@ -37,6 +37,47 @@ module ApplicationHelper
     [nil, [t('yes'), 'yes'], [t('no'), 'no'] ]
   end
 
+  # same as I18n.l() but ignores nil
+  def lf date, options={}
+    options[:format] = options[:format].to_sym if options[:format]
+    I18n.l(date, options) if date
+  end
+
+  def num number, options={:precision=>2}
+    return number unless number.is_a? Numeric
+    return '' if options[:skip_zero] && number==0
+    number_with_precision( number, options )
+  end
+
+  def c_num number, precision=2, skip_zero=false
+    return '' if skip_zero && number==0
+    return number unless number.is_a? Float
+    number_with_precision( number, :precision=>precision, :delimiter => ' ')
+#    c_number_with_precision( number, precision )
+  end
+
+  def num3 number, skip_zero=false
+    c_num number, 3, skip_zero
+  end
+
+  def num2 number, skip_zero=false
+    c_num number, 2, skip_zero
+  end
+
+  def num0 number, skip_zero=false
+    return '' if skip_zero && number==0
+    return number if number.is_a? Fixnum
+    c_num number, 0, skip_zero
+  end
+
+  def numx number, precision=3, skip_zero=false
+    c_num number, precision, skip_zero
+  end
+
+  def delete_button objekt, text
+    link_to 'Odstranit', objekt, method: :delete, data: { confirm: text }, class: 'btn btn-danger pull-right' if params[:action] == 'edit'
+  end
+
   def session_debug
     "#{session['debug_params']}<br />#{link_to_function 'debug', "$('#debug_div').toggle()",
         class: 'btn thin'}<hr class='separation'/><div class='box white spaced' id='debug_div'

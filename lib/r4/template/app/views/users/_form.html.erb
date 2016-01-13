@@ -39,20 +39,6 @@
       </div>
     </div>
 
-    <div class="form-group">
-      <%= f.label :r_finance, 'Přístup do faktur', :class => "col-sm-2 control-label" %>
-      <div class="col-sm-6">
-        <%= f.check_box :r_finance, :class => "form-control" %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :accountant, 'E-maily o stavu faktur', :class => "col-sm-2 control-label" %>
-      <div class="col-sm-6">
-        <%= f.check_box :accountant, :class => "form-control" %>
-      </div>
-    </div>
-
     <% if params[:action] == 'new' || params[:action] == 'create' %>
     <div class="form-group">
       <%= f.label :password, 'Heslo', :class => "col-sm-2 control-label" %>
