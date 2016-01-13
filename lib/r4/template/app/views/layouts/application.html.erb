@@ -33,15 +33,17 @@
           <%= menu_item 'example', '#', /example(?!new)/  %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li id="fat-menu" class="dropdown">
-              <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="icon-user"></i> <%= 'Přihlášen' %>:  <%= current_user.try(:email) %>
-                <i class="icon-caret-down"></i>
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to 'Odhlásit', destroy_user_session_path, :method => :delete %></li>
-              </ul>
-            </li>
+          <li id="fat-menu" class="dropdown">
+            <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="icon-user"></i> <%= 'Přihlášen' %>:  <%= current_user.full_name %>
+              <i class="icon-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'Změnit heslo', {controller: 'users', action: 'edit_own_password'} , :tabindex => -1 %></li>
+              <li class="divider"></li>
+              <li><%= link_to 'Odhlásit', destroy_user_session_path, :method => :delete %></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>

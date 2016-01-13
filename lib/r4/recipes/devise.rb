@@ -59,7 +59,24 @@ unless File.open(user_migrate_filename).read=~/string :login/
   end
 end
 
+directory 'app/views/users'
+
+gsub_file "#{@project_path}/config/routes.rb", 'devise_for :users' do
+<<EOF
+  devise_for :users
+  resources :users
+
+  get 'edit_password/:id' => 'users#edit_password'
+  resource :user, only: [:edit] do
+    collection do
+      patch 'update_password'
+    end
+  end
+
+  get 'edit_own_password' => 'users#edit_own_password'
+EOF
+end
+
+
 run 'rake app:bootstrap'
 run 'rake db:migrate'
-
-
