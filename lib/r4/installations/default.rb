@@ -36,6 +36,7 @@ layout_file = "#{@project_path}/app/views/layouts/application.html.erb"
 remove 'app/views/layouts/application.html.erb'
 copy 'app/views/layouts/application.html.erb'
 gsub_file layout_file, 'PROJECT_NAME', @project_name
+apply 'recipes/gitignore'
 run 'git init'
 run 'git add .'
 run "git commit -a -m 'Initial commit'"
