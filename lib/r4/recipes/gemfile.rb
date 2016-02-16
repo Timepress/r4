@@ -30,6 +30,5 @@ end
 gem 'font-awesome-rails'
 gem 'quiet_assets'
 gem 'jquery-ui-rails'
-gem 'jquery-rails'
 EOF
 end
