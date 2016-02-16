@@ -27,6 +27,17 @@ module ApplicationHelper
     %Q{<li#{' class=active' if params[:controller]+params[:action]=~test }><a href="#{url}">#{ name }</a></li>}.html_safe
   end
 
+  def dropdown_menu name, test, &block
+    out = %Q[<li #{"class='active'" if params[:controller] =~ /#{test}/} id='fat-menu' class='dropdown'>]
+    out += %Q[<a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">]
+    out += %Q[<i class="icon-user"></i>#{name}]
+    out += %Q[<i class="icon-caret-down"></i></a>]
+    out += %Q[<ul class="dropdown-menu">]
+    out += capture(&block)
+    out += %Q[</ul></li>]
+    out.html_safe
+  end
+
   # same as I18n.l() but ignores nil
   def lf date, options={}
     l(date, options) if date
