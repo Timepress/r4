@@ -59,9 +59,13 @@ unless File.open(user_migrate_filename).read=~/string :login/
   end
 end
 
+# part for editing users and own password
 copy 'app/controllers/users_controller.rb'
 Dir.mkdir "#{@project_path}/app/views/users"
 directory 'app/views/users', "#{@project_path}/app/views/users"
+
+# different options can be used - this one is allowing admins to change passwords to other users
+# - edit_user_registration_path can be used instead - then only user can change his/her own password
 
 gsub_file "#{@project_path}/config/routes.rb", 'devise_for :users' do
 <<EOF
