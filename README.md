@@ -2,13 +2,13 @@
 
 This gem is used for generating default project for Timepress company. However we hope it can be useful for other users as well.
 
+## Installation from source locally
+
+You can clone project and use bundler to install gem locally with "rake install".
+
 ## Installation
 
 Add this line to your application's Gemfile:
-
-It is still not in Rubygems repository. Thus this wont work for a while.
-
-You can clone project and use bundler to install gem locally with "rake install".
 
 ```ruby
 gem 'r4'
@@ -48,6 +48,10 @@ server:
 
 Then you can create new application with r4 new name_of_app
 Custom installations types can be specified in 'installations' directory.
+
+## TODO
+
+1. provide deploy.sh for upload.rake task to actually work for others
 
 ## Development
 

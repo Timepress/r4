@@ -43,7 +43,7 @@ class Starter < Thor
     unless options[:type]
       apply 'installations/default.rb'
     else
-      apply "installations/#{options[:type]}"
+      apply "installations/#{options[:type]}.rb"
     end
   end
 

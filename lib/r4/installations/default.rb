@@ -35,6 +35,7 @@ apply 'recipes/bootstrap.rb'
 layout_file = "#{@project_path}/app/views/layouts/application.html.erb"
 remove 'app/views/layouts/application.html.erb'
 copy 'app/views/layouts/application.html.erb'
+apply 'recipes/mail_settings.rb'
 gsub_file layout_file, 'PROJECT_NAME', @project_name
 apply 'recipes/gitignore.rb'
 run 'git init'
@@ -42,3 +43,11 @@ run 'git add .'
 run "git commit -a -m 'Initial commit'"
 
 rake 'app:bootstrap'
+
+todo =
+<<TEXT
+Check mail configuration in config/environments/production.rb for your server
+Check upload.rake task for your server
+TEXT
+
+say todo, :green
