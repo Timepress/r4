@@ -2,7 +2,7 @@
 
 This gem is used for generating default project for Timepress company. However we hope it can be useful for other users as well.
 
-## Installation from source locally
+## Installation locally
 
 You can clone project and use bundler to install gem locally with "rake install".
 
@@ -46,7 +46,7 @@ server:
   user: 'server_user_for_deploy'
 ```
 
-Then you can create new application with r4 new name_of_app
+Then you can create new application with r4 new name_of_app.
 Custom installations types can be specified in 'installations' directory.
 
 ## TODO
