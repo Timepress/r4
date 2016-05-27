@@ -1,4 +1,5 @@
 # DEFAULT SETTINGS
+# TODO check ruby version on system and use it in ruby version
 copy '.ruby-version'
 apply 'recipes/gemfile.rb'
 

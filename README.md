@@ -52,6 +52,7 @@ Custom installations types can be specified in 'installations' directory.
 ## TODO
 
 1. provide deploy.sh for upload.rake task to actually work for others
+2. Add testing for Rails presence before running installation
 
 ## Development
 

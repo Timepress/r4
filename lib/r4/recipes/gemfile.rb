@@ -32,3 +32,5 @@ gem 'quiet_assets'
 gem 'jquery-ui-rails'
 EOF
 end
+
+run 'bundle install'
