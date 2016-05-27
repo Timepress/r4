@@ -2,6 +2,7 @@
 # TODO check ruby version on system and use it in ruby version
 copy '.ruby-version'
 apply 'recipes/gemfile.rb'
+run 'bundle install'
 
 copy 'config/initializers/html_helpers.rb'
 copy 'config/locales/cs.yml'
